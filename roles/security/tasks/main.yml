@@ -1,0 +1,16 @@
+---
+# tasks file for roles/security
+
+- name: Execute install_Prometheus.yml
+  ansible.builtin.include_tasks:
+    file: install_Prometheus.yml
+
+- name: Execute install_Nagios.yml
+  ansible.builtin.include_tasks:
+    file: install_Nagios.yml
+
+- name: Execute generate_certificate.yml
+  ansible.builtin.include_tasks:
+    file: generate_certificate.yml
+
+

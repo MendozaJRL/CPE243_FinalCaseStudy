@@ -1,0 +1,10 @@
+
+# Tasks to Install Nagios Monitoring Tool
+
+- name: Install Nagios for Ubuntu
+  apt:
+    name:
+      - nagios4-core
+      - nagios-plugins
+    state: latest
+  when: ansible_distribution == "Ubuntu"

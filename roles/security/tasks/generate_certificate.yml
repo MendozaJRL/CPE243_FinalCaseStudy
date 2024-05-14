@@ -1,0 +1,21 @@
+
+# Tasks to build a Certificate Authority with SSL
+
+  - name: Install OpenSSL
+    apt:
+      name: openssl
+      state: present
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Build CA Private Key
+    openssl_privatekey:
+      path: /etc/ssl/private/myCertificateAuthority.key
+      size: 2048
+
+  - name: Build CA Certificate
+    openssl_certificate:
+      path: /etc/ssl/certs/myCertificateAuthority.key
+      privatekey_path: /etc/ssl/private/myCertificateAuthority.key
+      state: present
+      provider: selfsigned
+    become: yes

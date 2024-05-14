@@ -1,0 +1,58 @@
+
+# Tasks to Implement Firewall Rules
+
+- hosts: PC_WebAccess
+  become: true
+  tasks:
+
+    - name: Permit Access to HTTP or Port 80
+      community.general.ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+
+    - name: Permit Access to HTTPS or Port 443
+      community.general.ufw:
+        rule: allow
+        port: '443'
+        proto: tcp
+
+    - name: Permit Access to FTP or Port 21
+      community.general.ufw:
+        rule: allow
+        port: '21'
+        proto: tcp
+
+    - name: Permit Access to SSH or Port 22
+      community.general.ufw:
+        rule: allow
+        port: '22'
+        proto: tcp
+
+- hosts: PC_WebDenied
+  become: true
+  tasks:
+
+    - name: Deny Access to HTTP or Port 80
+      community.general.ufw:
+        rule: deny
+        port: '80'
+        proto: tcp
+
+    - name: Deny Access to HTTPS or Port 443
+      community.general.ufw:
+        rule: deny
+        port: '443'
+        proto: tcp
+
+    - name: Deny Access to FTP or Port 21
+      community.general.ufw:
+        rule: deny
+        port: '21'
+        proto: tcp
+
+    - name: Deny Access to SSH or Port 22
+      community.general.ufw:
+        rule: deny
+        port: '22'
+        proto: tcp

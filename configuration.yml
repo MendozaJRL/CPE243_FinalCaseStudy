@@ -1,0 +1,63 @@
+
+# Import Tasks from Ansible Role "Security"
+- hosts: all
+  become: true
+  roles:
+    - role: roles/security
+
+# Tasks for Implementing Firewall Rules
+- hosts: PC_WebAccess
+  become: true
+  tasks:
+
+    - name: Permit Access to HTTP or Port 80
+      ufw:
+        rule: allow
+        port: '80'
+        proto: tcp
+
+    - name: Permit Access to HTTPS or Port 443
+      ufw:
+        rule: allow
+        port: '443'
+        proto: tcp
+
+    - name: Permit Access to FTP or Port 21
+      ufw:
+        rule: allow
+        port: '21'
+        proto: tcp
+
+    - name: Permit Access to SSH or Port 22
+      ufw:
+        rule: allow
+        port: '22'
+        proto: tcp
+
+- hosts: PC_WebDenied
+  become: true
+  tasks:
+
+    - name: Deny Access to HTTP or Port 80
+      ufw:
+        rule: deny
+        port: '80'
+        proto: tcp
+
+    - name: Deny Access to HTTPS or Port 443
+      ufw:
+        rule: deny
+        port: '443'
+        proto: tcp
+
+    - name: Deny Access to FTP or Port 21
+      ufw:
+        rule: deny
+        port: '21'
+        proto: tcp
+
+    - name: Deny Access to SSH or Port 22
+      ufw:
+        rule: deny
+        port: '22'
+        proto: tcp

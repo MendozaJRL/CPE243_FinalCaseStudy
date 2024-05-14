@@ -1,0 +1,7 @@
+# PCs under the Network
+
+[PC_WebAccess]
+192.168.56.120	ansible_connection=ssh
+
+[PC_WebDenied]
+192.168.56.124	ansible_connection=ssh
